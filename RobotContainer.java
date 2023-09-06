@@ -5,7 +5,8 @@
 package frc.robot;
 
 import frc.robot.Constants;
-import frc.robot.autos.Autos;
+import frc.robot.autos.CubeBalance;
+import frc.robot.autos.CubeDrive;
 import frc.robot.commands.ArmDown;
 import frc.robot.commands.ArmHold;
 import frc.robot.commands.ArmUp;
@@ -57,8 +58,9 @@ public class RobotContainer {
     arm.setDefaultCommand(
       new ArmHold(arm)
     );
-    autoChooser.setDefaultOption("do nothing", Autos.doNothing(drive));
-    autoChooser.addOption("cube and drive", Autos.scoreDrive(drive, arm, intake));
+    autoChooser.setDefaultOption("do nothing", CubeDrive.doNothing(drive));
+    autoChooser.addOption("cube and drive", CubeDrive.scoreDrive(drive, arm, intake));
+    autoChooser.addOption("cube and balance", CubeBalance.cubeBalance(drive, arm, intake));
     SmartDashboard.putData(autoChooser);
   }
 

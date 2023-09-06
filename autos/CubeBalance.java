@@ -7,6 +7,7 @@ package frc.robot.autos;
 import frc.robot.commands.ArmDown;
 import frc.robot.commands.ArmHold;
 import frc.robot.commands.ArmUp;
+import frc.robot.commands.Balance;
 import frc.robot.commands.DriveStraight;
 import frc.robot.commands.Outtake;
 import frc.robot.subsystems.ArmSubsystem;
@@ -20,12 +21,12 @@ import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 
-public final class Autos {
+public final class CubeBalance {
   /** Example static factory for an autonomous command. */
   public static CommandBase doNothing(DriveSubsystem drive) {
     return Commands.sequence();
   }
-  public static CommandBase scoreDrive(DriveSubsystem drive, ArmSubsystem arm, IntakeSubsystem intake) {
+  public static CommandBase cubeBalance(DriveSubsystem drive, ArmSubsystem arm, IntakeSubsystem intake) {
   
     return Commands.sequence(
       new ParallelDeadlineGroup(
@@ -46,11 +47,11 @@ public final class Autos {
 
         new ParallelCommandGroup(
           new ArmHold(arm),
-          new DriveStraight(drive)
+          new Balance(drive) //not working yet
         )
     );
   }
-  private Autos() {
+  private CubeBalance() {
     throw new UnsupportedOperationException("This is a utility class!");
   }
 }
